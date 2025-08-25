@@ -15,6 +15,9 @@ CXXFLAGS = -DDMP_FIFO_RATE=9 -Wall -g -O2 `pkg-config gtkmm-3.0 --cflags --libs`
 
 $(CMN_OBJS) $(DMP_OBJS) $(RAW_OBJS) : $(HDRS)
 
+libMPU6050.a: $(CMN_OBJS)
+	ar rcs $@ $^
+
 demo_raw: $(CMN_OBJS) $(RAW_OBJS)
 	$(CXX) -o $@ $^ -lm
 
